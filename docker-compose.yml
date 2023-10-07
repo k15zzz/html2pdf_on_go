@@ -1,0 +1,14 @@
+version: "3.7"
+
+name: "html2pdg_on_go"
+
+services:
+  app:
+    container_name: "golang-v1.20"
+    build:
+      context: .
+      dockerfile: docker/go-debian-wkhtmlpdf.Dockerfile
+    volumes:
+      - ./:/src
+    ports:
+      - 80:80

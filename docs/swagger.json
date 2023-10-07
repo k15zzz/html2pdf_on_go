@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Преобразует HTML в PDF",
+    "title": "HTML to PDF",
+    "contact": {
+      "name": "Koptev Danil",
+      "url": "https://github.com/k15zzz",
+      "email": "koptevdeveloper@gmail.com"
+    },
+    "version": "1.0"
+  },
+  "basePath": "/api/v1",
+  "paths": {
+    "/converts/html-to-pdf": {
+      "post": {
+        "description": "Конвертирует html в pdf",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Converts"
+        ],
+        "summary": "Получить pdf",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "content",
+            "description": "Конвертируемый HTML",
+            "name": "content",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.PDF"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/httpErrors.RestError"
+            }
+          }
+        }
+      }
+    },
+    "/converts/url-to-pdf": {
+      "post": {
+        "description": "Конвертирует url в pdf",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Converts"
+        ],
+        "summary": "Получить pdf",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "link",
+            "description": "Конвертируемый URL",
+            "name": "link",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.PDF"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/httpErrors.RestError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "httpErrors.RestErr": {
+      "type": "object"
+    },
+    "httpErrors.RestError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer"
+        }
+      }
+    },
+    "models.HTML": {
+      "type": "object",
+      "required": [
+        "content"
+      ],
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "models.URL": {
+      "type": "object",
+      "required": [
+        "link"
+      ],
+      "properties": {
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "models.PDF": {
+      "type": "object",
+      "required": [
+        "content"
+      ],
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
