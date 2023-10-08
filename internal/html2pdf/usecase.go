@@ -8,6 +8,6 @@ import (
 
 // UseCase Html2pdf use case
 type UseCase interface {
-	HTMLToPDF(ctx echo.Context, html *models.HTML) string
-	URLToPDF(ctx echo.Context, html *models.URL) string
+	HTMLToPDF(ctx echo.Context, html *models.HTML) (string, error)
+	URLToPDF(ctx echo.Context, html *models.URL) (string, error)
 }

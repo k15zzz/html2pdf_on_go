@@ -26,11 +26,11 @@ func NewHtml2pdfUC(cfg *configs.Config, logger logger.Logger) html2pdf.UseCase {
 }
 
 // HTMLToPDF convert html (string) to PDF(string)
-func (u *html2pdfUC) HTMLToPDF(ctx echo.Context, html *models.HTML) string {
+func (u *html2pdfUC) HTMLToPDF(ctx echo.Context, html *models.HTML) (string, error) {
 	return converter.GeneratorHTMLToPDF(html.Content)
 }
 
 // URLToPDF convert html (string) to PDF(string)
-func (u *html2pdfUC) URLToPDF(ctx echo.Context, url *models.URL) string {
+func (u *html2pdfUC) URLToPDF(ctx echo.Context, url *models.URL) (string, error) {
 	return converter.GeneratorURLToPDF(url.Link)
 }

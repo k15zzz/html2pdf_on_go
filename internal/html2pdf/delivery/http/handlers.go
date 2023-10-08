@@ -46,7 +46,13 @@ func (h html2pdfHandlers) HTMLToPDF() echo.HandlerFunc {
 			return c.JSON(httpErrors.ErrorResponse(err))
 		}
 
-		pdf := generatePDF(h.html2pdfUC.HTMLToPDF(c, html))
+		bufferPdf, err := h.html2pdfUC.HTMLToPDF(c, html)
+		if err != nil {
+			utils.LogResponseError(c, h.logger, err)
+			return c.JSON(httpErrors.ErrorResponse(err))
+		}
+
+		pdf := generateResponsePDF(bufferPdf)
 
 		return c.JSON(http.StatusCreated, pdf)
 	}
@@ -68,12 +74,18 @@ func (h html2pdfHandlers) URLToPDF() echo.HandlerFunc {
 			return c.JSON(httpErrors.ErrorResponse(err))
 		}
 
-		pdf := generatePDF(h.html2pdfUC.URLToPDF(c, url))
+		bufferPdf, err := h.html2pdfUC.URLToPDF(c, url)
+		if err != nil {
+			utils.LogResponseError(c, h.logger, err)
+			return c.JSON(httpErrors.ErrorResponse(err))
+		}
+
+		pdf := generateResponsePDF(bufferPdf)
 
 		return c.JSON(http.StatusCreated, pdf)
 	}
 }
 
-func generatePDF(pdf string) models.PDF {
+func generateResponsePDF(pdf string) models.PDF {
 	return models.PDF{Content: pdf}
 }
