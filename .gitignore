@@ -28,5 +28,4 @@ go.work
 /dataSources/
 /dataSources.local.xml
 /.idea/
-go.sum
 bin
