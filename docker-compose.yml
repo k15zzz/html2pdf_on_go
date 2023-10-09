@@ -7,7 +7,7 @@ services:
     container_name: "golang-v1.20"
     build:
       context: .
-      dockerfile: docker/go-debian-wkhtmlpdf.Dockerfile
+      dockerfile: docker/go-daemon-debian-wkhtmlpdf.Dockerfile
     volumes:
       - ./:/src
     ports:
