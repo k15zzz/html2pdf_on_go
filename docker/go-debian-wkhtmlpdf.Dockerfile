@@ -1,4 +1,3 @@
-# image: k15zzz/go-debian-wkhtmlpdf:1.20
 FROM golang:1.20
 
 RUN apt-get update
